@@ -1,0 +1,108 @@
+:root {
+  --main-color: #8D5ED3;
+  --second-color: #E09DFF;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+}
+
+#hero {
+    height: 335px;
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    z-index: 1;
+}
+
+#minicar {
+    width: 800px;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+}
+
+#dima_eyes {
+    width: 300px;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+}
+
+#jane_eyes {
+    width: 300px;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+}
+
+#roach1,
+#roach2,
+#roach3,
+#roach4,
+#roach5
+{
+    width: 100px;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+}
+
+#aeroplane {
+    width: 500px;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    z-index: 1;
+}
+
+#logo-container {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color: black;
+    z-index: 0;
+}
+
+#logo {
+    width: 80%;
+    z-index: 1;
+}
+
+#start {
+    width: 100vw;
+    height: 17vh;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+#play:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.minicar-img {
+    width: 35%;
+    position: absolute;
+    left: 57%;
+    top: 2%;
+    z-index: 10;
+    background-color: transparent !important;
+}
+
+.minicar-img:hover {
+    cursor: pointer;
+}
+
+#end {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 2;
+}
