@@ -53,7 +53,6 @@ async function renderPage() {
     var roach3 = await document.getElementById('roach3')
     var roach4 = await document.getElementById('roach4')
     var roach5 = await document.getElementById('roach5')
-    var heroRect = hero.getBoundingClientRect()
     var minicarRect = minicar.getBoundingClientRect()
     var dimaEyesRect = dimaEyes.getBoundingClientRect()
     var janeEyesRect = janeEyes.getBoundingClientRect()
@@ -62,11 +61,37 @@ async function renderPage() {
     var roach3Rect = roach3.getBoundingClientRect()
     var roach4Rect = roach4.getBoundingClientRect()
     var roach5Rect = roach5.getBoundingClientRect()
+    var chrum = new Audio('audio/chrum.mp3')
+
+    if (pressedKeys.has('a')){
+        objects.player.x -= step; // движение влево
+        hero.src = './img/dima_left.png';
+        hero.style.height = '335px';
+        objects.player.img = 'left';
+        move = 'left'
+    }
+    if (pressedKeys.has('d')){
+        objects.player.x += step; // движение вправо
+        hero.src = './img/dima_right.png';
+        hero.style.height = '335px';
+        objects.player.img = 'right';
+        move = 'right'
+    }
+    if (pressedKeys.has('s')){
+        hero.src = './img/dima_down.png';
+        hero.style.height = '200px';
+        objects.player.img = 'down';
+        move = 'down'
+    } else if(hero.style.height = '200px'){
+        hero.src = './img/dima_right.png';
+        hero.style.height = '335px';
+    }
+
+    var heroRect = hero.getBoundingClientRect()
     var collision1 = checkCollision(minicarRect)
     var collision2 = checkCollision(dimaEyesRect)
     var collision3 = checkCollision(janeEyesRect)
     var collision = 0
-    var chrum = new Audio('audio/chrum.mp3')
 
     if (collision1) {
         collision = {'collision': collision1, 'obj': minicarRect}
@@ -222,24 +247,29 @@ function start() {
       ost[randomNumber].play();
     };
 
+    document.addEventListener('keyup', function(event) {
+      if (event.key === 'a' || event.key === 'ф') {
+        pressedKeys.delete('a')
+      } else if(event.key === 'd' || event.key === 'в') {
+        pressedKeys.delete('d')
+      } else if(event.key === 's' || event.key === 'ы') {
+        pressedKeys.delete('s')
+      }
+    });
+
     document.addEventListener('keydown', function(event) {
       if (event.key === 'a' || event.key === 'ф') {
-        objects.player.x -= step; // движение влево
-        hero.src = './img/dima_left.png';
-        objects.player.img = 'left';
-        move = 'left'
+        pressedKeys.add('a')
         keyDown = 1
       } else if (event.key === 'd' || event.key === 'в') {
-        objects.player.x += step; // движение вправо
-        hero.src = './img/dima_right.png';
-        objects.player.img = 'right';
-        move = 'right'
+        pressedKeys.add('d')
         keyDown = 1
       } else if (event.key === 'w' || event.key === 'ц') {
         objects.player.y -= step; // движение вверх
         move = 'up'
         keyDown = 1
       } else if (event.key === 's' || event.key === 'ы') {
+        pressedKeys.add('s')
         objects.player.y += step * 30; // движение вниз
         move = 'down'
         keyDown = 1
