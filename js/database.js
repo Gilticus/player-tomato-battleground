@@ -13,6 +13,7 @@ var ostPlay = 0
 var jumpAudio = new Audio('audio/jump.mp3')
 var speed = 50
 var allAudio = ['audio/chulochki.mp3', 'audio/hotline.mp3', 'audio/krug.mp3']
+var pressedKeys = new Set()
 
 objects = {
     'player': {
